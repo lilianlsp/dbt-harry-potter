@@ -139,6 +139,10 @@ Bucket vazio → resultado esperado é zero linhas, sem erro. Confirma que toda 
 | `AUTO_SUSPENDED` no `CREATE WAREHOUSE` | Nome de parâmetro errado | Corrigir para `AUTO_SUSPEND` |
 | `Database does not exist or not authorized` | Comando não persistiu / contexto de role diferente | Rodar novamente |
 
+## Nota de organização (atualização pós-carga)
+
+Na prática, as 6 tabelas do dataset maricinnamon acabaram todas na mesma subpasta (`raw/movies/`) por decisão durante a execução, em vez de uma subpasta por tabela como planejado originalmente. Funcionalmente não afeta o `COPY INTO` (ele aponta pro arquivo exato), só a organização visual do bucket. Ver `docs/loading-tables.md` para o fluxo completo de carga e os erros encontrados nessa etapa (incluindo um problema de encoding não coberto neste documento original).
+
 ## Custo
 
 - Storage S3: frações de centavo por GB/mês (CSVs pequenos, custo irrelevante)
